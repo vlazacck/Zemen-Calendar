@@ -27,7 +27,8 @@ class HomeScreen extends ConsumerWidget {
     final weekdayIdx = CalendarEngine.ethiopianWeekday(today);
     final weekdayAm = CalendarEngine.weekdayNamesAmharic[weekdayIdx];
     final weekdayEn = CalendarEngine.weekdayNamesEnglish[weekdayIdx];
-    final evangelist = CalendarEngine.evangelistForYear(today.year, amharic: isAmharic);
+    final evangelist =
+        CalendarEngine.evangelistForYear(today.year, amharic: isAmharic);
     final moonName = ref.watch(currentMoonPhaseNameProvider(isAmharic));
     final season = ref.watch(currentSeasonProvider(isAmharic));
     final ethTime = CalendarEngine.toEthiopianTime(now, amharic: isAmharic);
@@ -85,7 +86,7 @@ class HomeScreen extends ConsumerWidget {
                 SliverToBoxAdapter(
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(
-                      ZemenSpacing.md, ZemenSpacing.md, ZemenSpacing.md, 0),
+                        ZemenSpacing.md, ZemenSpacing.md, ZemenSpacing.md, 0),
                     child: Row(
                       children: [
                         // App logo / brand
@@ -102,12 +103,13 @@ class HomeScreen extends ConsumerWidget {
                                 ),
                               ),
                               child: const Center(
-                                child: Text('ዘ', style: TextStyle(
-                                  color: ZemenColors.primaryGold,
-                                  fontFamily: 'Benaiah',
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w700,
-                                )),
+                                child: Text('ዘ',
+                                    style: TextStyle(
+                                      color: ZemenColors.primaryGold,
+                                      fontFamily: 'Benaiah',
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w700,
+                                    )),
                               ),
                             ),
                             const SizedBox(width: 8),
@@ -140,7 +142,8 @@ class HomeScreen extends ConsumerWidget {
                   ).animate().fadeIn(duration: 400.ms),
                 ),
 
-                const SliverToBoxAdapter(child: SizedBox(height: ZemenSpacing.md)),
+                const SliverToBoxAdapter(
+                    child: SizedBox(height: ZemenSpacing.md)),
 
                 // ── Hero Calendar Card ───────────────────────────────────
                 SliverToBoxAdapter(
@@ -151,9 +154,8 @@ class HomeScreen extends ConsumerWidget {
                     gregorianDate: gregorianStr,
                     weekdayAmharic: weekdayAm,
                     weekdayEnglish: weekdayEn,
-                    evangelistAmharic: isAmharic
-                        ? 'ዓ/$evangelist'
-                        : 'Year of $evangelist',
+                    evangelistAmharic:
+                        isAmharic ? 'ዓ/$evangelist' : 'Year of $evangelist',
                     moonPhase: moonName,
                     ethiopianTime: ethTime,
                     season: season,
@@ -168,23 +170,24 @@ class HomeScreen extends ConsumerWidget {
                       .fadeIn(duration: 600.ms),
                 ),
 
-                const SliverToBoxAdapter(child: SizedBox(height: ZemenSpacing.md)),
+                const SliverToBoxAdapter(
+                    child: SizedBox(height: ZemenSpacing.md)),
 
                 // ── Bento Grid Row 1: Month nav + Today button ───────────
                 SliverToBoxAdapter(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: ZemenSpacing.md),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: ZemenSpacing.md),
                     child: Row(
                       children: [
                         Text(
                           isAmharic
-                              ? CalendarEngine.monthNamesAmharic[
-                                  calState.viewMonth - 1]
-                              : CalendarEngine.monthNamesEnglish[
-                                  calState.viewMonth - 1],
-                          style: ZemenTextStyles.sectionHeader(
-                              amharic: isAmharic),
+                              ? CalendarEngine
+                                  .monthNamesAmharic[calState.viewMonth - 1]
+                              : CalendarEngine
+                                  .monthNamesEnglish[calState.viewMonth - 1],
+                          style:
+                              ZemenTextStyles.sectionHeader(amharic: isAmharic),
                         ),
                         const SizedBox(width: 8),
                         Text(
@@ -197,14 +200,16 @@ class HomeScreen extends ConsumerWidget {
                         const Spacer(),
                         _MonthNavButton(
                           icon: Icons.chevron_left_rounded,
-                          onTap: () =>
-                              ref.read(calendarProvider.notifier).navigateMonth(-1),
+                          onTap: () => ref
+                              .read(calendarProvider.notifier)
+                              .navigateMonth(-1),
                         ),
                         const SizedBox(width: 4),
                         _MonthNavButton(
                           icon: Icons.chevron_right_rounded,
-                          onTap: () =>
-                              ref.read(calendarProvider.notifier).navigateMonth(1),
+                          onTap: () => ref
+                              .read(calendarProvider.notifier)
+                              .navigateMonth(1),
                         ),
                         const SizedBox(width: 8),
                         _TodayButton(
@@ -217,29 +222,31 @@ class HomeScreen extends ConsumerWidget {
                   ).animate().fadeIn(delay: 200.ms),
                 ),
 
-                const SliverToBoxAdapter(child: SizedBox(height: ZemenSpacing.sm)),
+                const SliverToBoxAdapter(
+                    child: SizedBox(height: ZemenSpacing.sm)),
 
                 // ── Month Grid ───────────────────────────────────────────
                 SliverToBoxAdapter(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: ZemenSpacing.md),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: ZemenSpacing.md),
                     child: Consumer(
                       builder: (context, ref, _) {
                         final feastDays = ref.watch(feastDaysForMonthProvider(
                             (calState.viewYear, calState.viewMonth)));
-                        final fastingDays =
-                            ref.watch(fastingDaysForMonthProvider(
+                        final fastingDays = ref.watch(
+                            fastingDaysForMonthProvider(
                                 (calState.viewYear, calState.viewMonth)));
 
                         return ZemenMonthGrid(
                           year: calState.viewYear,
                           month: calState.viewMonth,
-                          selectedDay: calState.selectedDate.year ==
-                                  calState.viewYear &&
-                              calState.selectedDate.month == calState.viewMonth
-                              ? calState.selectedDate.day
-                              : null,
+                          selectedDay:
+                              calState.selectedDate.year == calState.viewYear &&
+                                      calState.selectedDate.month ==
+                                          calState.viewMonth
+                                  ? calState.selectedDate.day
+                                  : null,
                           feastDays: feastDays,
                           fastingDays: fastingDays,
                           isAmharic: isAmharic,
@@ -254,13 +261,14 @@ class HomeScreen extends ConsumerWidget {
                   ).animate().fadeIn(delay: 300.ms),
                 ),
 
-                const SliverToBoxAdapter(child: SizedBox(height: ZemenSpacing.sm)),
+                const SliverToBoxAdapter(
+                    child: SizedBox(height: ZemenSpacing.sm)),
 
                 // ── Selected Date Gregorian Indicator ────────────────────
                 SliverToBoxAdapter(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: ZemenSpacing.md),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: ZemenSpacing.md),
                     child: AnimatedSwitcher(
                       duration: const Duration(milliseconds: 280),
                       transitionBuilder: (child, animation) => FadeTransition(
@@ -282,34 +290,28 @@ class HomeScreen extends ConsumerWidget {
                   ),
                 ),
 
-                const SliverToBoxAdapter(child: SizedBox(height: ZemenSpacing.md)),
+                const SliverToBoxAdapter(
+                    child: SizedBox(height: ZemenSpacing.md)),
 
                 // ── Bento Row: Fasting + Upcoming Feast ─────────────────
                 SliverToBoxAdapter(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: ZemenSpacing.md),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: ZemenSpacing.md),
                     child: Row(
                       children: [
                         // Fasting status
                         Expanded(
                           child: ZemenFastingCard(
                             fastingName: currentFasting?.nameEnglish ??
-                                (isWeeklyFast
-                                    ? 'Weekly Fast'
-                                    : 'No Fasting'),
-                            fastingNameAmharic:
-                                currentFasting?.nameAmharic ??
-                                    (isWeeklyFast
-                                        ? 'ሳምናዊ ጾም'
-                                        : 'ጾም የለም'),
-                            isFasting:
-                                currentFasting != null || isWeeklyFast,
+                                (isWeeklyFast ? 'Weekly Fast' : 'No Fasting'),
+                            fastingNameAmharic: currentFasting?.nameAmharic ??
+                                (isWeeklyFast ? 'ሳምናዊ ጾም' : 'ጾም የለም'),
+                            isFasting: currentFasting != null || isWeeklyFast,
                             morningStatus: true,
                             eveningStatus: true,
                             daysRemaining: currentFasting != null
-                                ? today.differenceInDays(
-                                    currentFasting.end)
+                                ? today.differenceInDays(currentFasting.end)
                                 : 0,
                             nextFastName: 'ዐቢይ ጾም',
                             isAmharic: isAmharic,
@@ -320,22 +322,23 @@ class HomeScreen extends ConsumerWidget {
                   ).animate().fadeIn(delay: 350.ms),
                 ),
 
-                const SliverToBoxAdapter(child: SizedBox(height: ZemenSpacing.md)),
+                const SliverToBoxAdapter(
+                    child: SizedBox(height: ZemenSpacing.md)),
 
                 // ── Upcoming Feasts / Holidays ───────────────────────────
                 SliverToBoxAdapter(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: ZemenSpacing.md),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: ZemenSpacing.md),
                     child: Text(
                       isAmharic ? 'ቀጣይ ክብረ-በዓሎች' : 'Upcoming Feasts',
-                      style: ZemenTextStyles.sectionHeader(
-                          amharic: isAmharic),
+                      style: ZemenTextStyles.sectionHeader(amharic: isAmharic),
                     ),
                   ),
                 ),
 
-                const SliverToBoxAdapter(child: SizedBox(height: ZemenSpacing.sm)),
+                const SliverToBoxAdapter(
+                    child: SizedBox(height: ZemenSpacing.sm)),
 
                 SliverList(
                   delegate: SliverChildBuilderDelegate(
@@ -361,17 +364,17 @@ class HomeScreen extends ConsumerWidget {
                           nameAmharic: item.holiday.nameAmharic,
                           daysUntil: label,
                           description: item.holiday.descriptionEnglish ?? '',
-                          importanceIndicator: _importanceEmoji(
-                              item.holiday.importanceLevel),
+                          importanceIndicator:
+                              _importanceEmoji(item.holiday.importanceLevel),
                           accentColor: _categoryColor(item.holiday.category),
                           isAmharic: isAmharic,
                         ).animate().slideX(
-                          begin: 0.2,
-                          end: 0,
-                          delay: (400 + i * 80).ms,
-                          duration: 400.ms,
-                          curve: Curves.easeOutCubic,
-                        ),
+                              begin: 0.2,
+                              end: 0,
+                              delay: (400 + i * 80).ms,
+                              duration: 400.ms,
+                              curve: Curves.easeOutCubic,
+                            ),
                       );
                     },
                     childCount: upcomingHolidays.length,
@@ -379,34 +382,34 @@ class HomeScreen extends ConsumerWidget {
                 ),
 
                 // ── Timeline Stream ──────────────────────────────────────
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(
-                      ZemenSpacing.md,
-                      ZemenSpacing.lg,
-                      ZemenSpacing.md,
-                      ZemenSpacing.sm,
-                    ),
-                    child: Text(
-                      isAmharic ? 'የቀን ዝርዝር' : 'Day Stream',
-                      style: ZemenTextStyles.sectionHeader(
-                          amharic: isAmharic),
-                    ),
-                  ),
-                ),
-
-                SliverPadding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: ZemenSpacing.md),
-                  sliver: SliverList(
-                    delegate: SliverChildListDelegate(
-                      _buildTimelineItems(isAmharic, today),
-                    ),
-                  ),
-                ),
-
-                const SliverToBoxAdapter(
-                    child: SizedBox(height: ZemenSpacing.xxxl)),
+                // SliverToBoxAdapter(
+                //   child: Padding(
+                //     padding: const EdgeInsets.fromLTRB(
+                //       ZemenSpacing.md,
+                //       ZemenSpacing.lg,
+                //       ZemenSpacing.md,
+                //       ZemenSpacing.sm,
+                //     ),
+                //     child: Text(
+                //       isAmharic ? 'የቀን ዝርዝር' : 'Day Stream',
+                //       style: ZemenTextStyles.sectionHeader(
+                //           amharic: isAmharic),
+                //     ),
+                //   ),
+                // ),
+                //
+                // SliverPadding(
+                //   padding: const EdgeInsets.symmetric(
+                //       horizontal: ZemenSpacing.md),
+                //   sliver: SliverList(
+                //     delegate: SliverChildListDelegate(
+                //       _buildTimelineItems(isAmharic, today),
+                //     ),
+                //   ),
+                // ),
+                //
+                // const SliverToBoxAdapter(
+                //     child: SizedBox(height: ZemenSpacing.xxxl)),
               ],
             ),
           ),
@@ -415,60 +418,70 @@ class HomeScreen extends ConsumerWidget {
     );
   }
 
-  List<Widget> _buildTimelineItems(bool isAmharic, EthiopianDate today) {
-    final items = [
-      (
-        title: 'Today',
-        titleAm: 'ዛሬ',
-        sub: CalendarEngine.monthNamesEnglish[today.month - 1],
-        emoji: '📅',
-        color: ZemenColors.primaryGold,
-      ),
-      (
-        title: 'Tuesday Fast',
-        titleAm: 'ሰዑ ጾም',
-        sub: 'Weekly observance',
-        emoji: '🕊',
-        color: ZemenColors.crimson,
-      ),
-      (
-        title: 'Saint Gabriel',
-        titleAm: 'ቅዱስ ገብርኤል',
-        sub: 'Monthly commemoration',
-        emoji: '✨',
-        color: ZemenColors.feastBlue,
-      ),
-      (
-        title: 'Timket Season',
-        titleAm: 'ጥምቀት',
-        sub: 'Coming soon',
-        emoji: '💧',
-        color: ZemenColors.success,
-      ),
-    ];
-
-    return items.asMap().entries.map((entry) {
-      final i = entry.key;
-      final item = entry.value;
-      final dayStr = CalendarEngine.toGeezNumeral(today.day);
-      return ZemenTimelineItem(
-        title: item.title,
-        titleAmharic: item.titleAm,
-        subtitle: item.sub,
-        date: dayStr,
-        emoji: item.emoji,
-        dotColor: item.color,
-        isFirst: i == 0,
-        isLast: i == items.length - 1,
-        isAmharic: isAmharic,
-      );
-    }).toList();
-  }
+  // List<Widget> _buildTimelineItems(bool isAmharic, EthiopianDate today) {
+  //   final items = [
+  //     (
+  //       title: 'Today',
+  //       titleAm: 'ዛሬ',
+  //       sub: CalendarEngine.monthNamesEnglish[today.month - 1],
+  //       emoji: '📅',
+  //       color: ZemenColors.primaryGold,
+  //     ),
+  //     (
+  //       title: 'Tuesday Fast',
+  //       titleAm: 'ሰዑ ጾም',
+  //       sub: 'Weekly observance',
+  //       emoji: '🕊',
+  //       color: ZemenColors.crimson,
+  //     ),
+  //     (
+  //       title: 'Saint Gabriel',
+  //       titleAm: 'ቅዱስ ገብርኤል',
+  //       sub: 'Monthly commemoration',
+  //       emoji: '✨',
+  //       color: ZemenColors.feastBlue,
+  //     ),
+  //     (
+  //       title: 'Timket Season',
+  //       titleAm: 'ጥምቀት',
+  //       sub: 'Coming soon',
+  //       emoji: '💧',
+  //       color: ZemenColors.success,
+  //     ),
+  //   ];
+  //
+  //   return items.asMap().entries.map((entry) {
+  //     final i = entry.key;
+  //     final item = entry.value;
+  //     final dayStr = CalendarEngine.toGeezNumeral(today.day);
+  //     return ZemenTimelineItem(
+  //       title: item.title,
+  //       titleAmharic: item.titleAm,
+  //       subtitle: item.sub,
+  //       date: dayStr,
+  //       emoji: item.emoji,
+  //       dotColor: item.color,
+  //       isFirst: i == 0,
+  //       isLast: i == items.length - 1,
+  //       isAmharic: isAmharic,
+  //     );
+  //   }).toList();
+  // }
 
   String _formatGregorian(DateTime date) {
     const months = [
-      'January', 'February', 'March', 'April', 'May', 'June',
-      'July', 'August', 'September', 'October', 'November', 'December',
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
     ];
     return '${months[date.month - 1]} ${date.day}, ${date.year}';
   }
@@ -508,8 +521,18 @@ class _SelectedDateGregorianCard extends StatelessWidget {
 
   String _formatGregorian(DateTime date) {
     const months = [
-      'January', 'February', 'March', 'April', 'May', 'June',
-      'July', 'August', 'September', 'October', 'November', 'December',
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
     ];
     return '${months[date.month - 1]} ${date.day}, ${date.year}';
   }
@@ -592,8 +615,8 @@ class _SelectedDateGregorianCard extends StatelessWidget {
                             decoration: BoxDecoration(
                               color: ZemenColors.primaryGoldGlow,
                               borderRadius: ZemenRadius.fullBR,
-                              border: Border.all(
-                                  color: ZemenColors.primaryGoldDim),
+                              border:
+                                  Border.all(color: ZemenColors.primaryGoldDim),
                             ),
                             child: Text(
                               isAmharic ? 'ዛሬ' : 'Today',
@@ -634,7 +657,6 @@ class _SelectedDateGregorianCard extends StatelessWidget {
 }
 
 class _LanguageToggle extends StatelessWidget {
-
   final bool isAmharic;
   final VoidCallback onToggle;
 

@@ -584,7 +584,7 @@ class _SearchHints extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final chips = isAmharic
-        ? ['ፋሲካ', 'ጥምቀት', 'ማስቀሌ', 'ዐቢይ ጾም', 'ሚካኤል', 'ገና']
+        ? ['ፋሲካ', 'ጥምቀት', 'መስቀል', 'ዐቢይ ጾም', 'ሚካኤል', 'ገና']
         : ['Easter', 'Timket', 'Meskel', 'Great Lent', 'Michael', 'Genna'];
 
     return Padding(

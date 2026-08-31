@@ -60,7 +60,7 @@ class HolidayEngine {
     ),
 
     Holiday(
-      nameAmharic: 'ማስቀሌ',
+      nameAmharic: 'መስቀል',
       nameEnglish: 'Meskel (Finding of the True Cross)',
       month: 1, day: 17,
       category: HolidayCategory.orthodoxFeast,

@@ -216,7 +216,7 @@ class ZemenSearchButton extends StatelessWidget {
       context: context,
       barrierDismissible: true,
       barrierLabel: 'Search',
-      barrierColor: Colors.black.withOpacity(0.6),
+      barrierColor: Colors.black.withValues(alpha: 0.6),
       transitionDuration: const Duration(milliseconds: 280),
       pageBuilder: (_, __, ___) => const _SearchOverlay(),
       transitionBuilder: (ctx, anim, _, child) => FadeTransition(
@@ -556,9 +556,9 @@ class _ResultCard extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                     decoration: BoxDecoration(
-                      color: _tagColor.withOpacity(0.12),
+                      color: _tagColor.withValues(alpha: 0.12),
                       borderRadius: ZemenRadius.fullBR,
-                      border: Border.all(color: _tagColor.withOpacity(0.3)),
+                      border: Border.all(color: _tagColor.withValues(alpha: 0.3)),
                     ),
                     child: Text(
                       result.tag,

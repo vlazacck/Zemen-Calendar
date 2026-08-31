@@ -1,0 +1,17 @@
+Add these keys to ios/Runner/Info.plist inside the root <dict>:
+
+<!-- Notification permission descriptions -->
+<key>NSUserNotificationUsageDescription</key>
+<string>Zemen Calendar uses notifications to remind you of feasts, fasting periods, and your personal reminders.</string>
+
+<!-- Critical alerts (alarm-grade, breaks through Silent/Focus mode) -->
+<!-- Requires Apple entitlement: com.apple.developer.usernotifications.critical-alerts -->
+<key>NSCriticalAlertUsageDescription</key>
+<string>Zemen Calendar uses critical alerts to ensure important feast and reminder notifications reach you even in Focus mode.</string>
+
+<!-- Background fetch to reschedule next occurrences -->
+<key>UIBackgroundModes</key>
+<array>
+    <string>fetch</string>
+    <string>remote-notification</string>
+</array>
